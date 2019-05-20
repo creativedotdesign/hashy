@@ -29,7 +29,7 @@
 
       if (this.offset_elem.length) {
         this.offset_elem.each(function () {
-          offset_height += (jQuery(this).height() - extra_offset);
+          offset_height += (jQuery(this).outerHeight() - extra_offset);
         });
       }
 
@@ -97,11 +97,12 @@
 
       // Scroll to hash on page load. The browser does this by
       // default but this will compensate for sticky headers
+
       if (window.location.hash) {
         jQuery(window).on('load', function () {
           window.setTimeout(function() {
-            this.scrollToHash(window.location.hash, true);
-          }.bind(this), 200);
+            this.scrollToHash(window.location.hash, true, false, extra_offset);
+          }.bind(this), 0);
         }.bind(this));
       }
     }
